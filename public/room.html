@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mulatschak</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="style/base.css" />
+</head>
+
+<body>
+    <!-- header -->
+    <div class="container-fluid text-center base-header">
+        <div class="page-header">
+            <h1 id="room-h1">Roomheader</h1>
+            <a target="_blank" href="https://de.wikipedia.org/wiki/Mulatschak">Rules</a>
+        </div>
+    </div>
+    <div class="container-fluid fill">
+        <div class="row">
+            <div class="col-3">
+                <table class="table table-sm table-bordered table-dark">
+                    <thead class="thead-dark">
+                        <tr id="player-names">
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td colspan="4">Stiche</td>
+                        </tr>
+                        <tr id="player-trick-calls">
+                        </tr>
+                    </tbody>
+
+                    <tbody id="player-points">
+                        <tr>
+                            <td colspan="4">Gesamtpunktestand</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+            <div class="col">
+                <div id="game-table">
+                    <!-- Modal Trick Calls-->
+                    <div class="modal fade" id="trick-calls" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Anzahl der Stiche auswählen.</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                                        <div class="btn-group btn-group-lg mr-2" role="group" aria-label="First group">
+                                            <button id="trick-call-btn2" value="2" type="button" class="btn btn-secondary">2</button>
+                                            <button id="trick-call-btn3" value="3" type="button" class="btn btn-secondary">3</button>
+                                            <button id="trick-call-btn4" value="4" type="button" class="btn btn-secondary">4</button>
+                                            <button id="trick-call-btn5" value="5" type="button" class="btn btn-secondary">5</button>
+                                            <button id="trick-call-btnMulatschak" value="6" type="button" class="btn btn-secondary">Mulatschak</button>
+                                            <button id="trick-call-btnNone" value="0" type="button" class="btn btn-secondary">Weiter</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="choose-trump" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Trumpf wählen.</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                                        <div class="btn-group btn-group-lg mr-2" role="group" aria-label="First group">
+                                            <img id="choose-trump-color_herz" alt="herz" width="100" height="120" src="/img/color_herz.jpg" title="heart will double all the points">
+                                            <img id="choose-trump-color_eichel" alt="eichel" width="100" height="120" src="/img/color_eichel.jpg">
+                                            <img id="choose-trump-color_pik" alt="pik" width="100" height="120" src="/img/color_pik.jpg">
+                                            <img id="choose-trump-color_schelle" alt="schelle" width="100" height="120" src="/img/color_schelle.jpg">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="change-hand" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Kartentausch.</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                                        <div class="btn-group btn-group-lg mr-2" role="group" aria-label="First group">
+                                            <button id="change-hand-btn1" value="1" type="button" class="btn btn-secondary">1</button>
+                                            <button id="change-hand-btn2" value="2" type="button" class="btn btn-secondary">2</button>
+                                            <button id="change-hand-btn3" value="3" type="button" class="btn btn-secondary">3</button>
+                                            <button id="change-hand-btn4" value="4" type="button" class="btn btn-secondary">4</button>
+                                            <button id="change-hand-btn5" value="5" type="button" class="btn btn-secondary">5</button>
+                                            <button id="change-hand-btnBridge" value="6" type="button" class="btn btn-secondary">Wolfgang</button>
+                                            <button id="change-hand-btnNone" value="0" type="button" class="btn btn-secondary">Keine</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <svg id="svg-table">
+                        <svg id="start-view" x="40%" y="40%" width="200" height="110">
+                            <rect x="0" y="0" rx="5" ry="5" width="100%" height="100%" />
+                            <text x="100" y="65" fill="white" text-anchor="middle">Bist du bereit? (click me)</text>
+                        </svg>
+
+                        <svg id="end-view" x="40%" y="40%" width="200" height="140">
+                            <rect x="0" y="0" rx="5" ry="5" width="100%" height="100%" />
+                            <text x="100" y="65" fill="white" text-anchor="middle">Spielende!</text>
+                            <text x="100" y="85" fill="white" text-anchor="middle">Neues Spiel beginnen</text>
+                        </svg>
+
+                        <defs>
+                            <image id="herz_sau" xlink:href="img/cards/herz_sau.jpg" x="0" y="0" width="100" height="140" />
+                            <image id="herz_koenig" xlink:href="img/cards/herz_koenig.jpg" x="0" y="0" width="100" height="140" />
+                            <image id="herz_ober" xlink:href="img/cards/herz_ober.jpg" x="0" y="0" width="100" height="140" />
+                            <image id="herz_unter" xlink:href="img/cards/herz_unter.jpg" x="0" y="0" width="100" height="140" />
+                            <image id="herz_10" xlink:href="img/cards/herz_10.jpg" x="0" y="0" width="100" height="140" />
+                            <image id="herz_9" xlink:href="img/cards/herz_9.jpg" x="0" y="0" width="100" height="140" />
+                            <image id="herz_8" xlink:href="img/cards/herz_8.jpg" x="0" y="0" width="100" height="140" />
+                            <image id="herz_7" xlink:href="img/cards/herz_7.jpg" x="0" y="0" width="100" height="140" />
+
+                            <image id="eichel_sau" xlink:href="img/cards/eichel_sau.jpg" x="0" y="0" width="100" height="140" />
+                            <image id="eichel_koenig" xlink:href="img/cards/eichel_koenig.jpg" x="0" y="0" width="100" height="140" />
+                            <image id="eichel_ober" xlink:href="img/cards/eichel_ober.jpg" x="0" y="0" width="100" height="140" />
+                            <image id="eichel_unter" xlink:href="img/cards/eichel_unter.jpg" x="0" y="0" width="100" height="140" />
+                            <image id="eichel_10" xlink:href="img/cards/eichel_10.jpg" x="0" y="0" width="100" height="140" />
+                            <image id="eichel_9" xlink:href="img/cards/eichel_9.jpg" x="0" y="0" width="100" height="140" />
+                            <image id="eichel_8" xlink:href="img/cards/eichel_8.jpg" x="0" y="0" width="100" height="140" />
+                            <image id="eichel_7" xlink:href="img/cards/eichel_7.jpg" x="0" y="0" width="100" height="140" />
+
+                            <image id="pik_sau" xlink:href="img/cards/pik_sau.jpg" x="0" y="0" width="100" height="140" />
+                            <image id="pik_koenig" xlink:href="img/cards/pik_koenig.jpg" x="0" y="0" width="100" height="140" />
+                            <image id="pik_ober" xlink:href="img/cards/pik_ober.jpg" x="0" y="0" width="100" height="140" />
+                            <image id="pik_unter" xlink:href="img/cards/pik_unter.jpg" x="0" y="0" width="100" height="140" />
+                            <image id="pik_10" xlink:href="img/cards/pik_10.jpg" x="0" y="0" width="100" height="140" />
+                            <image id="pik_9" xlink:href="img/cards/pik_9.jpg" x="0" y="0" width="100" height="140" />
+                            <image id="pik_8" xlink:href="img/cards/pik_8.jpg" x="0" y="0" width="100" height="140" />
+                            <image id="pik_7" xlink:href="img/cards/pik_7.jpg" x="0" y="0" width="100" height="140" />
+
+                            <image id="schelle_sau" xlink:href="img/cards/schelle_sau.jpg" x="0" y="0" width="100" height="140" />
+                            <image id="schelle_koenig" xlink:href="img/cards/schelle_koenig.jpg" x="0" y="0" width="100" height="140" />
+                            <image id="schelle_ober" xlink:href="img/cards/schelle_ober.jpg" x="0" y="0" width="100" height="140" />
+                            <image id="schelle_unter" xlink:href="img/cards/schelle_unter.jpg" x="0" y="0" width="100" height="140" />
+                            <image id="schelle_10" xlink:href="img/cards/schelle_10.jpg" x="0" y="0" width="100" height="140" />
+                            <image id="schelle_9" xlink:href="img/cards/schelle_9.jpg" x="0" y="0" width="100" height="140" />
+                            <image id="schelle_8" xlink:href="img/cards/schelle_8.jpg" x="0" y="0" width="100" height="140" />
+                            <image id="schelle_7" xlink:href="img/cards/schelle_7.jpg" x="0" y="0" width="100" height="140" />
+
+                            <image id="weli" xlink:href="img/cards/weli.jpg" x="0" y="0" width="100" height="140" />
+
+                            <image id="card_flipside" xlink:href="img/cards/card_flipside.jpg" x="0" y="0" width="100" height="140" />
+
+                            <image id="color_herz" xlink:href="img/color_herz.png" x="0" y="0" width="50" height="50" />
+                            <image id="color_eichel" xlink:href="img/color_eichel.png" x="0" y="0" width="50" height="50" />
+                            <image id="color_pik" xlink:href="img/color_pik.png" x="0" y="0" width="50" height="50" />
+                            <image id="color_schelle" xlink:href="img/color_schelle.png" x="0" y="0" width="50" height="50" />
+                        </defs>
+
+                        <g id="trump-group"></g>
+                        <g id="flipside-cards"></g>
+                        <g id="cards"></g>
+                        <g id="played-cards"></g>
+
+
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container-fluid text-center">
+            <p>&copy; Kräuter &amp; Federer</p>
+        </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="socket.io/socket.io.js"></script>
+    <script src="room.js"></script>
+
+</body>
+
+</html>

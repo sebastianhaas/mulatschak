@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Mulatschak</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="style/base.css" />
+    <script src="socket.io/socket.io.js"></script>
+    <script src="index.js"></script>
+    
+</head>
+
+<body>
+    <!-- header -->
+    <div class="container-fluid text-center base-header">
+        <div class="page-header">
+            <h1>Mulatschak</h1>
+            <p>Online Multiplayer Kartenspiel</p>
+            <a target="_blank" href="https://de.wikipedia.org/wiki/Mulatschak">Regeln</a>
+        </div>
+    </div>
+
+    <div class="container col-sm-6 col-sm-offset-6">
+        <div class="form-group">
+            <p><strong>Benutzernamen eingeben. Raum auswählen. Mulin.</strong></p>
+            <label for="username">Benutzername</label>
+            <input type="text" class="form-control" id="username" placeholder="Username" required>
+        </div>
+        <h3>Räume</h3>
+        <!-- list of available rooms -->
+        <div id="availableRooms" class="list-group"></div>
+
+        <div class="form-group">
+            <input type="text" class="form-control" id="room-name" placeholder="Roomname">
+            <button id="addRoomBtn" type="button" class="btn btn-primary btn-block input-group">Add</button>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container-fluid text-center">
+            <p>&copy; Manuel Hinterreiter (FH Hagenberg)</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

@@ -1,5 +1,6 @@
 //#region initial setup
-const port = 3000;
+const port = process.env.PORT || 3000
+
 var express = require('express');
 var app = express();
 
@@ -23,7 +24,7 @@ let rooms = [];
 let room = require('./Room');
 let game = require('./Deck');
 
-rooms.push(new room.Room(rooms.length, 'Testroom')); // demo data
+rooms.push(new room.Room(rooms.length, 'FIFA Beste Leben')); // demo data
 
 //#endregion variables
 
